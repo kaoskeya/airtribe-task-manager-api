@@ -35,7 +35,14 @@ eg: `PORT=4000 node src/index.js`, `node src/index.js`
 
 **Optional extension**
 
-```curl --location 'http://localhost:3000/tasks?sort_field=updated_at&sort_order=desc&filter_done=true&filter_priority=medium'```
+```
+filter_done: true / false
+filter_priority: low / medium / high
+sort_field: created_at / updated_at
+sort_order: asc / desc
+```
+
+```curl --location 'http://localhost:3000/tasks?sort_field=updated_at&sort_order=desc&filter_done=true&filter_priority=medium```
 
 ### Objective:
 
