@@ -3,14 +3,15 @@
 ## Solution
 
 Start with an env var PORT to start on a specific port, or app will run on port 3000.
+
 eg: `PORT=4000 bun src/index.js`, `bun src/index.js`
 
 `cURL requests for all endpoints`
 
 - **GET /tasks**: Retrieve all tasks.
-  `curl --location 'http://localhost:3000/tasks'`
+  ```curl --location 'http://localhost:3000/tasks'```
 - **GET /tasks/:id**: Retrieve a single task by its ID.
-  `curl --location 'http://localhost:3000/tasks/2'`
+  ```curl --location 'http://localhost:3000/tasks/2'```
 - **POST /tasks**: Create a new task.
   ```
   curl --location 'http://localhost:3000/tasks' \
@@ -31,7 +32,7 @@ eg: `PORT=4000 bun src/index.js`, `bun src/index.js`
     }'
   ```
 - **DELETE /tasks/:id**: Delete a task by its ID.
-  `curl --location --request DELETE 'http://localhost:3000/tasks/3'`
+  ```curl --location --request DELETE 'http://localhost:3000/tasks/3'```
 
 **Optional extension**
 
@@ -43,6 +44,12 @@ sort_order: asc / desc
 ```
 
 ```curl --location 'http://localhost:3000/tasks?sort_field=updated_at&sort_order=desc&filter_done=true&filter_priority=medium```
+
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
 ### Objective:
 
