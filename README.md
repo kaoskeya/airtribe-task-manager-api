@@ -3,7 +3,7 @@
 ## Solution
 
 Start with an env var PORT to start on a specific port, or app will run on port 3000.
-eg: `PORT=4000 node src/index.js`, `node src/index.js`
+eg: `PORT=4000 bun src/index.js`, `bun src/index.js`
 
 `cURL requests for all endpoints`
 
