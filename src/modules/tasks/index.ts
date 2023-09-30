@@ -47,7 +47,9 @@ router.get("/:id", (req, res) => {
 // Create a new task
 router.post("/", validator.body(postTaskSchema), (req, res) => {
   try {
-    const task = create(req.body);
+    const task = create({
+      ...req.body
+    });
     res.status(201).json({ task });
   } catch (e) {
     res

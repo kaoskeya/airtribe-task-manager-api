@@ -54,7 +54,10 @@ export const readById: (id: number) => Task = (id) => {
 export const create: (task: TaskInput) => Task = (task) => {
   const newTask = {
     id: TASKS.length + 1,
-    ...task,
+    done: task.done || false,
+    priority: task.priority || "medium",
+    title: task.title,
+    description: task.description,
     created_at: new Date(),
     updated_at: new Date(),
   };
