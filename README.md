@@ -2,32 +2,26 @@
 
 ## Solution
 
-## Prerequisite:
-
 Install bun (https://bun.sh/)
 
 Clone this repo and run `bun install` to install all dependencies.
 
 Run `bun src/index.ts` to start the app.
 
-Optionally specify a value for the env var PORT to start on a port other than 3000.
+Optionally specify a value for the env var PORT to start on a port other than 3000. `PORT=4000 bun src/index.ts`.
 
-eg: `PORT=4000 bun src/index.ts`.
-
-`cURL requests for all endpoints`
-
-| Purpose                                                                       | Endpoint                                                                                                                                                                                                                              |
-|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Fetch all tasks                                                               | ```curl --location 'http://localhost:3000/tasks'```                                                                                                                                                                                   |
-| Fetch all tasks, sort by created_at, ascending                                | ```curl --location 'http://localhost:3000/tasks?sort_field=created_at'```                                                                                                                                                             |
-| Fetch all tasks, sort by created_at, descending                               | ```curl --location 'http://localhost:3000/tasks?sort_field=created_at&sort_order=desc'```                                                                                                                                             |
-| Fetch tasks that are done                                                     | ```curl --location 'http://localhost:3000/tasks?filter_done=true'```                                                                                                                                                                  |
-| Fetch tasks that are not done                                                 | ```curl --location 'http://localhost:3000/tasks?filter_done=false'```                                                                                                                                                                 |
-| Fetch high priority tasks (all previous sort and filter params are available) | ```curl --location 'http://localhost:3000/tasks/priority/high'```                                                                                                                                                                     |
-| Retrieve a single task by id                                                  | ```curl --location 'http://localhost:3000/tasks/2'```                                                                                                                                                                                 |
-| Create a task                                                                 | ```curl --location 'http://localhost:3000/tasks' \ --header 'Content-Type: application/json' \ --data '{     "title": "Title A",     "description": "Description A",     "priority": "high" }'```                                     |
-| Update a task                                                                 | ```curl --location --request PUT 'http://localhost:3000/tasks/2' \ --header 'Content-Type: application/json' \ --data '{     "title": "Title A2",     "description": "Description A2",     "done": true,     "priority": "high" }'``` |
-| Delete a task                                                                 | ```curl --location --request DELETE 'http://localhost:3000/tasks/3'```                                                                                                                                                                |
+| Purpose                                                                       | Endpoint                                                                                                                                                                                                         |
+|-------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Fetch all tasks                                                               | ```curl --location 'http://localhost:3000/tasks'```                                                                                                                                                              |
+| Fetch all tasks, sort by created_at, ascending                                | ```curl --location 'http://localhost:3000/tasks?sort_field=created_at'```                                                                                                                                        |
+| Fetch all tasks, sort by created_at, descending                               | ```curl --location 'http://localhost:3000/tasks?sort_field=created_at&sort_order=desc'```                                                                                                                        |
+| Fetch tasks that are done                                                     | ```curl --location 'http://localhost:3000/tasks?filter_done=true'```                                                                                                                                             |
+| Fetch tasks that are not done                                                 | ```curl --location 'http://localhost:3000/tasks?filter_done=false'```                                                                                                                                            |
+| Fetch high priority tasks (all previous sort and filter params are available) | ```curl --location 'http://localhost:3000/tasks/priority/high'```                                                                                                                                                |
+| Retrieve a single task by id                                                  | ```curl --location 'http://localhost:3000/tasks/2'```                                                                                                                                                            |
+| Create a task                                                                 | ```curl --location 'http://localhost:3000/tasks' --header 'Content-Type: application/json' --data '{ "title": "Title A", "description": "Description A", "priority": "high" }'```                                |
+| Update a task                                                                 | ```curl --location --request PUT 'http://localhost:3000/tasks/2' --header 'Content-Type: application/json' --data '{ "title": "Title A2", "description": "Description A2", "done": true, "priority": "high"}'``` |
+| Delete a task                                                                 | ```curl --location --request DELETE 'http://localhost:3000/tasks/3'```                                                                                                                                           |
 
 
 **Optional extension**
