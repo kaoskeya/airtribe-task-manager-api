@@ -6,9 +6,11 @@ Install bun (https://bun.sh/)
 
 Clone this repo and run `bun install` to install all dependencies.
 
-Run `bun src/index.ts` to start the app.
+Run `bun start` to start the app.
 
-Optionally specify a value for the env var PORT to start on a port other than 3000. `PORT=4000 bun src/index.ts`.
+Optionally specify a value for the env var PORT to start on a port other than 3000. `PORT=4000 bun start`.
+
+https://www.postman.com/orange-firefly-200404/workspace/at-keya/collection/4452747-e832da58-d73c-4dfb-a8ec-b2863459b635
 
 | Purpose                                                                       | Endpoint                                                                                                                                                                                                         |
 |-------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
