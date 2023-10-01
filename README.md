@@ -10,23 +10,10 @@ Run `bun start` to start the app.
 
 Optionally specify a value for the env var PORT to start on a port other than 3000. `PORT=4000 bun start`.
 
-https://www.postman.com/orange-firefly-200404/workspace/at-keya/collection/4452747-e832da58-d73c-4dfb-a8ec-b2863459b635
+1. Deployed to render.com at https://airtribe-task-manager-api-4841.onrender.com/
+2. Postman collection at https://www.postman.com/orange-firefly-200404/workspace/at-keya/collection/4452747-e832da58-d73c-4dfb-a8ec-b2863459b635 Replace the `BASE_URL` variable in this collection to the render.com URL in point 1, to test without cloning this repo.
 
-| Purpose                                                                       | Endpoint                                                                                                                                                                                                         |
-|-------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Fetch all tasks                                                               | ```curl --location 'http://localhost:3000/tasks'```                                                                                                                                                              |
-| Fetch all tasks, sort by created_at, ascending                                | ```curl --location 'http://localhost:3000/tasks?sort_field=created_at'```                                                                                                                                        |
-| Fetch all tasks, sort by created_at, descending                               | ```curl --location 'http://localhost:3000/tasks?sort_field=created_at&sort_order=desc'```                                                                                                                        |
-| Fetch tasks that are done                                                     | ```curl --location 'http://localhost:3000/tasks?filter_done=true'```                                                                                                                                             |
-| Fetch tasks that are not done                                                 | ```curl --location 'http://localhost:3000/tasks?filter_done=false'```                                                                                                                                            |
-| Fetch high priority tasks (all previous sort and filter params are available) | ```curl --location 'http://localhost:3000/tasks/priority/high'```                                                                                                                                                |
-| Retrieve a single task by id                                                  | ```curl --location 'http://localhost:3000/tasks/2'```                                                                                                                                                            |
-| Create a task                                                                 | ```curl --location 'http://localhost:3000/tasks' --header 'Content-Type: application/json' --data '{ "title": "Title A", "description": "Description A", "priority": "high" }'```                                |
-| Update a task                                                                 | ```curl --location --request PUT 'http://localhost:3000/tasks/2' --header 'Content-Type: application/json' --data '{ "title": "Title A2", "description": "Description A2", "done": true, "priority": "high"}'``` |
-| Delete a task                                                                 | ```curl --location --request DELETE 'http://localhost:3000/tasks/3'```                                                                                                                                           |
-
-
-**Optional extension**
+Optional URL params while fetching tasks or tasks by priority:
 
 ```
 filter_done: true / false
@@ -34,11 +21,28 @@ sort_field: created_at / updated_at
 sort_order: asc / desc
 ```
 
-------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------
+| Purpose                                                                       | Endpoint                                                                                                                                                                                                     |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Fetch all tasks                                                               | `curl --location 'http://localhost:3000/tasks'`                                                                                                                                                              |
+| Fetch all tasks, sort by created_at, ascending                                | `curl --location 'http://localhost:3000/tasks?sort_field=created_at'`                                                                                                                                        |
+| Fetch all tasks, sort by created_at, descending                               | `curl --location 'http://localhost:3000/tasks?sort_field=created_at&sort_order=desc'`                                                                                                                        |
+| Fetch tasks that are done                                                     | `curl --location 'http://localhost:3000/tasks?filter_done=true'`                                                                                                                                             |
+| Fetch tasks that are not done                                                 | `curl --location 'http://localhost:3000/tasks?filter_done=false'`                                                                                                                                            |
+| Fetch high priority tasks (all previous sort and filter params are available) | `curl --location 'http://localhost:3000/tasks/priority/high'`                                                                                                                                                |
+| Retrieve a single task by id                                                  | `curl --location 'http://localhost:3000/tasks/2'`                                                                                                                                                            |
+| Create a task                                                                 | `curl --location 'http://localhost:3000/tasks' --header 'Content-Type: application/json' --data '{ "title": "Title A", "description": "Description A", "priority": "high" }'`                                |
+| Update a task                                                                 | `curl --location --request PUT 'http://localhost:3000/tasks/2' --header 'Content-Type: application/json' --data '{ "title": "Title A2", "description": "Description A2", "done": true, "priority": "high"}'` |
+| Delete a task                                                                 | `curl --location --request DELETE 'http://localhost:3000/tasks/3'`                                                                                                                                           |
+
+---
+
+---
+
+---
+
+---
+
+---
 
 ### Objective:
 
