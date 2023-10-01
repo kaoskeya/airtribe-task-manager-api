@@ -1,5 +1,10 @@
-import { Router, Request } from "express";
-import * as EJV from "express-joi-validation";
+import { Router, Response } from "express";
+import {
+  createValidator,
+  ValidatedRequestSchema,
+  ValidatedRequest,
+  ContainerTypes,
+} from "express-joi-validation";
 import {
   readAll,
   readById,
@@ -9,25 +14,49 @@ import {
 } from "../../datasource/tasks/in-memory";
 import { getTaskSchema, postTaskSchema, putTaskSchema } from "./schema";
 
-const validator = EJV.createValidator({});
+const validator = createValidator({});
 
 // init
 const router = Router();
+
+interface GetTasksRequestSchema extends ValidatedRequestSchema {
+  [ContainerTypes.Query]: {
+    filter_done?: boolean;
+    sort_field?: "created_at" | "updated_at";
+    sort_order?: "asc" | "desc";
+  };
+  [ContainerTypes.Params]: {
+    level: "low" | "medium" | "high";
+  };
+}
 
 // Retrieve all tasks
 router.get(
   "/",
   validator.query(getTaskSchema),
-  (
-    req: Request<{
-      filter_done?: boolean;
-      filter_priority?: "low" | "medium" | "high";
-      sort_field?: "created_at" | "updated_at";
-      sort_order?: "asc" | "desc";
-    }>,
-    res
-  ) => {
-    const tasks = readAll(req.query);
+  (req: ValidatedRequest<GetTasksRequestSchema>, res: Response) => {
+    const tasks = readAll({
+      filter_done: req.query.filter_done,
+      sort_field: req.query.sort_field,
+      sort_order: req.query.sort_order,
+    });
+    res.status(201).json({
+      tasks,
+    });
+  }
+);
+
+// Retrieve tasks by priority
+router.get(
+  "/priority/:level",
+  validator.query(getTaskSchema),
+  (req: ValidatedRequest<GetTasksRequestSchema>, res: Response) => {
+    const tasks = readAll({
+      filter_done: req.query.filter_done,
+      sort_field: req.query.sort_field,
+      sort_order: req.query.sort_order,
+      filter_priority: req.params.level,
+    });
     res.status(201).json({
       tasks,
     });
@@ -48,7 +77,7 @@ router.get("/:id", (req, res) => {
 router.post("/", validator.body(postTaskSchema), (req, res) => {
   try {
     const task = create({
-      ...req.body
+      ...req.body,
     });
     res.status(201).json({ task });
   } catch (e) {

@@ -21,10 +21,6 @@ app.get("/", (req, res) => {
 });
 
 // listen up
-app.listen(PORT, (error) => {
-  if (error) {
-    console.error("There was an error", error);
-    return;
-  }
+app.listen(PORT, () => {
   console.log(`Task Manager API is running on port ${PORT}`);
 });

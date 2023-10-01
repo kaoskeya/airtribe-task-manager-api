@@ -17,6 +17,7 @@ type Task = TaskInput & TaskBase;
 export type FilterPriority = "low" | "medium" | "high";
 
 const TASKS: Array<TaskInput & Task> = [];
+let TASK_COUNT = 0;
 
 export const readAll: (arg0: {
   filter_done?: boolean;
@@ -53,7 +54,7 @@ export const readById: (id: number) => Task = (id) => {
 
 export const create: (task: TaskInput) => Task = (task) => {
   const newTask = {
-    id: TASKS.length + 1,
+    id: ++TASK_COUNT,
     done: task.done || false,
     priority: task.priority || "medium",
     title: task.title,
