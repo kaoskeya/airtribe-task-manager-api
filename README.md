@@ -1,17 +1,8 @@
 # airtribe - task manager api
 
-## Solution
-
-Install bun (https://bun.sh/)
-
-Clone this repo and run `bun install` to install all dependencies.
-
-Run `bun start` to start the app.
-
-Optionally specify a value for the env var PORT to start on a port other than 3000. `PORT=4000 bun start`.
-
 1. Deployed to render.com at https://airtribe-task-manager-api-4841.onrender.com/
-2. Postman collection at https://www.postman.com/orange-firefly-200404/workspace/at-keya/collection/4452747-e832da58-d73c-4dfb-a8ec-b2863459b635 Replace the `BASE_URL` variable in this collection to the render.com URL in point 1, to test without cloning this repo.
+2. To run locally, install bun (https://bun.sh/), clone this repo and run `bun install` to install all dependencies. Run `bun start` to start the app. Optionally specify port `PORT=4000 bun start`.
+3. Postman collection at https://www.postman.com/orange-firefly-200404/workspace/at-keya/collection/4452747-e832da58-d73c-4dfb-a8ec-b2863459b635 Replace the `BASE_URL` variable in this collection to the render.com URL in point 1, to test without cloning this repo.
 
 Optional URL params while fetching tasks or tasks by priority:
 
