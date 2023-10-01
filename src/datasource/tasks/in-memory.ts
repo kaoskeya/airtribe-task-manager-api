@@ -24,7 +24,7 @@ export const readAll: (arg0: {
   filter_priority?: FilterPriority;
   sort_field?: "created_at" | "updated_at";
   sort_order?: "asc" | "desc";
-}) => Array<Task> = (args) => {
+}) => Promise<Array<Task>> = async (args) => {
   const filtered_tasks = TASKS.filter((t) => {
     if (isBoolean(args.filter_done)) {
       return t.done === args.filter_done;
@@ -44,7 +44,7 @@ export const readAll: (arg0: {
     : sorted_tasks.reverse();
 };
 
-export const readById: (id: number) => Task = (id) => {
+export const readById: (id: number) => Promise<Task> = async (id) => {
   const task = TASKS.find((t) => t.id === id);
   if (!task) {
     throw new Error(`Task ${id} not found`);
@@ -52,7 +52,7 @@ export const readById: (id: number) => Task = (id) => {
   return task;
 };
 
-export const create: (task: TaskInput) => Task = (task) => {
+export const create: (task: TaskInput) => Promise<Task> = async (task) => {
   const newTask = {
     id: ++TASK_COUNT,
     done: task.done || false,
@@ -66,7 +66,10 @@ export const create: (task: TaskInput) => Task = (task) => {
   return newTask;
 };
 
-export const update: (id: number, task: TaskInput) => Task = (id, task) => {
+export const update: (id: number, task: TaskInput) => Promise<Task> = async (
+  id,
+  task
+) => {
   const index = TASKS.findIndex((t) => t.id === id);
   if (index === -1) {
     throw new Error(`Task ${id} not found`);
@@ -80,7 +83,7 @@ export const update: (id: number, task: TaskInput) => Task = (id, task) => {
   return updatedTask;
 };
 
-export const _delete: (id: number) => void = (id) => {
+export const _delete: (id: number) => Promise<void> = async (id) => {
   const index = TASKS.findIndex((t) => t.id === id);
   if (index === -1) {
     throw new Error(`Task ${id} not found`);

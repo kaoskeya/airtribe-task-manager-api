@@ -34,8 +34,8 @@ interface GetTasksRequestSchema extends ValidatedRequestSchema {
 router.get(
   "/",
   validator.query(getTaskSchema),
-  (req: ValidatedRequest<GetTasksRequestSchema>, res: Response) => {
-    const tasks = readAll({
+  async (req: ValidatedRequest<GetTasksRequestSchema>, res: Response) => {
+    const tasks = await readAll({
       filter_done: req.query.filter_done,
       sort_field: req.query.sort_field,
       sort_order: req.query.sort_order,
@@ -50,8 +50,8 @@ router.get(
 router.get(
   "/priority/:level",
   validator.query(getTaskSchema),
-  (req: ValidatedRequest<GetTasksRequestSchema>, res: Response) => {
-    const tasks = readAll({
+  async (req: ValidatedRequest<GetTasksRequestSchema>, res: Response) => {
+    const tasks = await readAll({
       filter_done: req.query.filter_done,
       sort_field: req.query.sort_field,
       sort_order: req.query.sort_order,
@@ -64,9 +64,9 @@ router.get(
 );
 
 // Retrieve a single task by its ID
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const task = readById(Number(req.params.id));
+    const task = await readById(Number(req.params.id));
     res.status(201).json({ task });
   } catch (e) {
     res.status(404).json({ message: `Task ${req.params.id} not found` });
@@ -74,9 +74,9 @@ router.get("/:id", (req, res) => {
 });
 
 // Create a new task
-router.post("/", validator.body(postTaskSchema), (req, res) => {
+router.post("/", validator.body(postTaskSchema), async (req, res) => {
   try {
-    const task = create({
+    const task = await create({
       ...req.body,
     });
     res.status(201).json({ task });
@@ -88,9 +88,9 @@ router.post("/", validator.body(postTaskSchema), (req, res) => {
 });
 
 // Update an existing task by its ID
-router.put("/:id", validator.body(putTaskSchema), (req, res) => {
+router.put("/:id", validator.body(putTaskSchema), async (req, res) => {
   try {
-    const task = update(Number(req.params.id), req.body);
+    const task = await update(Number(req.params.id), req.body);
     res.status(201).json({ task });
   } catch (e) {
     res
@@ -100,9 +100,9 @@ router.put("/:id", validator.body(putTaskSchema), (req, res) => {
 });
 
 // Delete a task by its ID
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
-    _delete(Number(req.params.id));
+    await _delete(Number(req.params.id));
     res.status(204).json();
   } catch (e) {
     res
