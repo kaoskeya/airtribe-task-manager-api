@@ -5,19 +5,19 @@ import {
   ValidatedRequest,
   ContainerTypes,
 } from "express-joi-validation";
-import {
-  readAll,
-  readById,
-  create,
-  update,
-  _delete,
-} from "../../datasource/tasks/in-memory";
+import * as tasksInMemoryDatasource from "../../datasource/tasks/in-memory";
+import * as tasksFileDatasource from "../../datasource/tasks/file";
 import { getTaskSchema, postTaskSchema, putTaskSchema } from "./schema";
 
 const validator = createValidator({});
 
 // init
 const router = Router();
+
+const { readAll, readById, create, update, _delete } =
+  process.env.TASKS_DATASOURCE === "file"
+    ? tasksFileDatasource
+    : tasksInMemoryDatasource;
 
 interface GetTasksRequestSchema extends ValidatedRequestSchema {
   [ContainerTypes.Query]: {

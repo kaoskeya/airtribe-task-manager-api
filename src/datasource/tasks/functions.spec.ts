@@ -1,7 +1,20 @@
-import { expect, test, describe } from "bun:test";
-import { _delete, create, readAll, readById, update } from "./in-memory";
+import { expect, test, describe, beforeAll } from "bun:test";
+import { unlink } from "node:fs/promises";
+
+// import { _delete, create, readAll, readById, update } from "./in-memory";
+import { _delete, create, readAll, readById, update } from "./file";
 
 describe("Tasks DataSource", () => {
+  beforeAll(async () => {
+    await unlink("tasks.json");
+    await Bun.write(
+      "tasks.json",
+      JSON.stringify({
+        TASKS: [],
+        TASK_COUNT: 0,
+      })
+    );
+  });
   test("should return empty array when no tasks", async () => {
     // setup
     const expected: [] = [];

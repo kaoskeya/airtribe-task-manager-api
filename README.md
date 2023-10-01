@@ -4,6 +4,8 @@
 2. To run locally, install bun (https://bun.sh/), clone this repo and run `bun install` to install all dependencies. Run `bun start` to start the app. Optionally specify port `PORT=4000 bun start`.
 3. Postman collection at https://www.postman.com/orange-firefly-200404/workspace/at-keya/collection/4452747-e832da58-d73c-4dfb-a8ec-b2863459b635 Replace the `BASE_URL` variable in this collection to the render.com URL in point 1, to test without cloning this repo.
 
+The code base supports in memory storage of data, as well as file based. Set the env var, `TASKS_DATASOURCE=file` to write to the file, this will be persistant across restarts.
+
 Optional URL params while fetching tasks or tasks by priority:
 
 ```
